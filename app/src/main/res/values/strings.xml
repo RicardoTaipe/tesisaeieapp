@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">tesisaeie</string>
+    <string name="title_casilleros">Casilleros</string>
+    <string name="title_productos">Productos</string>
+    <string name="title_cursos">Cursos</string>
+    <string name="title_notificaciones">Anuncios</string>
+    <string name="title_home">Home</string>
+    <string name="more_info">Mas Información</string>
+</resources>
