@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".lockers.LockerFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:scrollbars="none"
-        >
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progressBarLocker"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:indeterminate="true" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/progressBarLocker"
+            android:id="@+id/recycler_locker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="none"
+            >
+        </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

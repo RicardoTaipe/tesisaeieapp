@@ -33,12 +33,12 @@ public class LockerAdapter extends RecyclerView.Adapter<LockerAdapter.LockerHold
     @Override
     public void onBindViewHolder(@NonNull LockerAdapter.LockerHolder lockerHolder, int position) {
         lockerHolder.description.setText(lockers.get(position).getDescription());
-        if(lockers.get(position).getState()){
-            lockerHolder.state.setText("OCUPADO");
-            lockerHolder.stateImg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock,0,0,0);
+        if(lockers.get(position).getFree()){
+            lockerHolder.free.setText("LIBRE");
+            lockerHolder.freeImg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unlock,0,0,0);
         }else{
-            lockerHolder.state.setText("LIBRE");
-            lockerHolder.stateImg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unlock,0,0,0);
+            lockerHolder.free.setText("OCUPADO");
+            lockerHolder.freeImg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock,0,0,0);
         }
     }
 
@@ -51,13 +51,13 @@ public class LockerAdapter extends RecyclerView.Adapter<LockerAdapter.LockerHold
     }
 
     public class LockerHolder extends RecyclerView.ViewHolder {
-        TextView description,state,stateImg;
+        TextView description,free,freeImg;
 
         public LockerHolder(@NonNull View itemView) {
             super(itemView);
             description=(TextView) itemView.findViewById(R.id.description);
-            state=(TextView) itemView.findViewById(R.id.state);
-            stateImg=(TextView) itemView.findViewById(R.id.stateImg);
+            free=(TextView) itemView.findViewById(R.id.free);
+            freeImg=(TextView) itemView.findViewById(R.id.freeImg);
         }
     }
 }

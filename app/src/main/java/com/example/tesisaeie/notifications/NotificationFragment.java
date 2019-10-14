@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.tesisaeie.R;
@@ -33,7 +34,7 @@ public class NotificationFragment extends Fragment{
     private RecyclerView recyclerView;
     private AnuncioAdapter anuncioAdapter;
     private List<Anuncio> anunciosList;
-
+    private ProgressBar loader;
     public NotificationFragment() {
         // Required empty public constructor
     }
@@ -50,6 +51,7 @@ public class NotificationFragment extends Fragment{
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_notification, container, false);
         recyclerView = root.findViewById(R.id.recycler_notification);
+        loader = root.findViewById(R.id.progressBarNotification);
         anunciosList = new ArrayList<>();
         anuncioAdapter= new AnuncioAdapter(anunciosList,getActivity());
         recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
@@ -70,12 +72,15 @@ public class NotificationFragment extends Fragment{
         call.enqueue(new Callback<List<Anuncio>>() {
             @Override
             public void onResponse(Call<List<Anuncio>> call, Response<List<Anuncio>> response) {
+                loader.setVisibility(View.GONE);
                 anunciosList= response.body();
                 anuncioAdapter.changeData(anunciosList);
             }
 
             @Override
             public void onFailure(Call<List<Anuncio>> call, Throwable t) {
+                loader.setVisibility(View.VISIBLE);
+                Toast.makeText(getContext(),"Se produjo un error", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, t.toString());
             }
         });

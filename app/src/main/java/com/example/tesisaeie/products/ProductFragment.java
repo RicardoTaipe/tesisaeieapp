@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.tesisaeie.R;
 import com.example.tesisaeie.api.ApiClient;
@@ -28,6 +30,7 @@ public class ProductFragment extends Fragment {
     private static final String TAG = ProductFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private List<Product> productsList;
+    private ProgressBar loader;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -46,8 +49,9 @@ public class ProductFragment extends Fragment {
         // Inflate the layout for this fragment
 
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_locker, container, false);
-        recyclerView = root.findViewById(R.id.recycler_view);
+        View root = inflater.inflate(R.layout.fragment_product, container, false);
+        recyclerView = root.findViewById(R.id.recycler_product);
+        loader = root.findViewById(R.id.progressBarProduct);
         productsList = new ArrayList<>();
         //RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 4);
         //recyclerView.setLayoutManager(mLayoutManager);
@@ -62,6 +66,7 @@ public class ProductFragment extends Fragment {
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                loader.setVisibility(View.GONE);
                 productsList.clear();
                 productsList= response.body();
                 recyclerView.setAdapter(new ProductAdapter(productsList,getActivity()));
@@ -69,6 +74,8 @@ public class ProductFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
+                loader.setVisibility(View.VISIBLE);
+                Toast.makeText(getContext(),"Se produjo un error", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, t.toString());
             }
         });

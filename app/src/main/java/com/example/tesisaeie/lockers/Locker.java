@@ -7,13 +7,13 @@ public class Locker {
     private String id;
     @SerializedName("description")
     private String description;
-    @SerializedName("state")
-    private Boolean state;
+    @SerializedName("free")
+    private Boolean free;
 
-    public Locker(String id, String description, Boolean state) {
+    public Locker(String id, String description, Boolean free) {
         this.id = id;
         this.description = description;
-        this.state = state;
+        this.free = free;
     }
 
     public String getId() {
@@ -32,11 +32,11 @@ public class Locker {
         this.description = description;
     }
 
-    public Boolean getState() {
-        return state;
+    public Boolean getFree() {
+        return free;
     }
 
-    public void setState(Boolean state) {
-        this.state = state;
+    public void setFree(Boolean free) {
+        this.free = free;
     }
 }
