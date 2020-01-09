@@ -5,7 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static Retrofit retrofit = null;
-    private static final String BASE_URL = "http://tesisaeie.herokuapp.com/api/";
+    //private static final String BASE_URL = "http://tesisaeie.herokuapp.com/api/";
+    private static final String BASE_URL = "http://tesisaeie.centralus.cloudapp.azure.com/api/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
